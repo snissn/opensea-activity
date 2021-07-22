@@ -44,10 +44,18 @@ fetch("https://api.opensea.io/graphql/", {
   "credentials": "include"
 }).then(res => res.json())
 .then(json => {
-    //console.log(JSON.stringify(json.data.assetEvents.edges, null, 4));
     json.data.assetEvents.edges.forEach( x=>{
-        const asset =     x.node.assetQuantity.asset.collection.name
-        data[asset] = 1 +( data[asset] || 0)
+    log(x);
+        if(x.node.assetQuantity){
+            const asset =     x.node.assetQuantity.asset
+                const name = asset.collection.name
+            data[name] = 1 +( data[name] || 0)
+        }else{
+             x.node.assetQuantities.forEach(asset => {
+                const name = asset.collection.name
+                data[name] = 1 +( data[name] || 0)
+             })
+        }
     });
     log(sortObjectEntries(data,10))
 
