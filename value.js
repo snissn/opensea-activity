@@ -35,6 +35,7 @@ function getprice(price){
 const response = await fetch("https://api.opensea.io/graphql/", {
   "headers": {
     "accept": "*/*",
+     'User-Agent': 'Mozilla/5.0' ,
     "accept-language": "en-US,en;q=0.9",
     "content-type": "application/json",
     "sec-ch-ua": "\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"91\", \"Chromium\";v=\"91\"",
